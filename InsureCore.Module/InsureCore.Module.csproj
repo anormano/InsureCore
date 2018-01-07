@@ -201,6 +201,12 @@
     <Compile Include="BusinessObjects\Life\Insured\Policy.cs" />
     <Compile Include="BusinessObjects\Life\Insured\PolicyPremium.cs" />
     <Compile Include="CodeLibrary\CommonLibrary.cs" />
+    <Compile Include="Controllers\SecuredExportController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SecuredExportController.Designer.cs">
+      <DependentUpon>SecuredExportController.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>

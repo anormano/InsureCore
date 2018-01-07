@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Validation;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using DevExpress.ExpressApp.Security;
 
 namespace InsureCore.Module.BusinessObjects.Administration
 {
@@ -47,6 +48,7 @@ namespace InsureCore.Module.BusinessObjects.Administration
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
         //    this.PersistentProperty = "Paid";
         //}
+        public bool CanExport { get; set; }
         [Association("User-Roles")]
         public XPCollection<User> Users
         {
@@ -58,6 +60,35 @@ namespace InsureCore.Module.BusinessObjects.Administration
         IEnumerable<IPermissionPolicyUser> IPermissionPolicyRoleWithUsers.Users
         {
             get { return Users.OfType<IPermissionPolicyUser>(); }
+        }
+    }
+
+    public class ExportPermission : IOperationPermission
+    {
+        public string Operation
+        {
+            get { return "Export"; }
+        }
+    }
+
+    public class ExportPermissionRequest : IPermissionRequest
+    {
+        public object GetHashObject()
+        {
+            return this.GetType().FullName;
+        }
+    }
+
+    public class ExportPermissionRequestProcessor : PermissionRequestProcessorBase<ExportPermissionRequest>
+    {
+        private IPermissionDictionary permissions;
+        public ExportPermissionRequestProcessor(IPermissionDictionary permissions)
+        {
+            this.permissions = permissions;
+        }
+        public override bool IsGranted(ExportPermissionRequest permissionRequest)
+        {
+            return (permissions.FindFirst<ExportPermission>() != null);
         }
     }
 }

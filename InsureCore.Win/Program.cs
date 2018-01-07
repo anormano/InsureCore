@@ -10,6 +10,7 @@ using DevExpress.Persistent.BaseImpl;
 using System.ServiceModel;
 using DevExpress.ExpressApp.Security.ClientServer.Wcf;
 using DevExpress.ExpressApp.Security.ClientServer;
+using InsureCore.Module.BusinessObjects.Administration;
 
 namespace InsureCore.Win {
     static class Program {
@@ -23,6 +24,7 @@ namespace InsureCore.Win {
 #endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            WcfDataServerHelper.AddKnownType(typeof(ExportPermissionRequest));
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached;
             if(Tracing.GetFileLocationFromSettings() == DevExpress.Persistent.Base.FileLocation.CurrentUserApplicationDataFolder) {
                 Tracing.LocalUserAppDataPath = Application.LocalUserAppDataPath;
