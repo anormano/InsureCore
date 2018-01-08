@@ -278,6 +278,19 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\LabelTextViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\LabelTextViewController.Designer.cs">
+      <DependentUpon>LabelTextViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\IPanelCaption.cs" />
+    <Compile Include="Templates\LightStyleMainRibbonFormTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\LightStyleMainRibbonFormTemplate.Designer.cs">
+      <DependentUpon>LightStyleMainRibbonFormTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinModule.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -289,6 +302,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Templates\LightStyleMainRibbonFormTemplate.resx">
+      <DependentUpon>LightStyleMainRibbonFormTemplate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinModule.resx">
       <DependentUpon>WinModule.cs</DependentUpon>
       <SubType>Designer</SubType>

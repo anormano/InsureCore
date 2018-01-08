@@ -31,6 +31,7 @@ namespace InsureCore.Win {
             }
             Tracing.Initialize();
             InsureCoreWindowsFormsApplication winApplication = new InsureCoreWindowsFormsApplication();
+            winApplication.CreateCustomTemplate += WinApplication_CreateCustomTemplate;
             // Refer to the https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112680.aspx help article for more details on how to provide a custom splash form.
             //winApplication.SplashScreen = new DevExpress.ExpressApp.Win.Utils.DXSplashScreen("YourSplashImage.png");
             SecurityAdapterHelper.Enable();
@@ -51,6 +52,12 @@ namespace InsureCore.Win {
             catch(Exception e) {
                 winApplication.HandleException(e);
             }
+        }
+
+        private static void WinApplication_CreateCustomTemplate(object sender, CreateCustomTemplateEventArgs e)
+        {
+            if (e.Context == TemplateContext.ApplicationWindow)
+                e.Template = new InsureCore.Module.Win.Templates.LightStyleMainRibbonFormTemplate();
         }
     }
 }
