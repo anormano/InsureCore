@@ -206,7 +206,7 @@
             // navBarSingleChoiceActionControl
             // 
             this.navBarSingleChoiceActionControl.ActionId = "ShowNavigationItem";
-            this.navBarSingleChoiceActionControl.AllowAutoSelectNavItem = true;
+            //this.navBarSingleChoiceActionControl.AllowAutoSelectNavItem = true;
             this.navBarSingleChoiceActionControl.NavigationControl = this.navBarControl;
             this.navBarSingleChoiceActionControl.NavigationStyle = DevExpress.ExpressApp.Templates.ActionContainers.NavigationStyle.TreeList;
             // 
@@ -986,6 +986,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControl1.ContentImage")));
+            this.panelControl1.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.panelControl1.Controls.Add(this.labelControl1);
             resources.ApplyResources(this.panelControl1, "panelControl1");
             this.panelControl1.Name = "panelControl1";

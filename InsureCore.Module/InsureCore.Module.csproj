@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -248,6 +249,7 @@
     <EmbeddedResource Include="Images\BO_Map.png" />
     <EmbeddedResource Include="Images\BO_Map_32x32.png" />
     <EmbeddedResource Include="Images\BO_Map_48x48.png" />
+    <EmbeddedResource Include="Images\Logo.png" />
     <Content Include="Welcome.html" />
   </ItemGroup>
   <ItemGroup />

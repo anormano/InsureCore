@@ -38,10 +38,10 @@ namespace InsureCore.Module.Controllers
                     controller.Active.SetItemValue("Security", SecuritySystem.IsGranted(new ExportPermissionRequest()));
                 }
             }
-            void ExportAction_Executing(object sender, System.ComponentModel.CancelEventArgs e)
-            {
-                SecuritySystem.Demand(new ExportPermissionRequest());
-            }
+        }
+        void ExportAction_Executing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SecuritySystem.Demand(new ExportPermissionRequest());
         }
         protected override void OnViewControlsCreated()
         {

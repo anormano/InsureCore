@@ -393,6 +393,42 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>798, 603</value>
   </data>
+  <data name="panelControl1.ContentImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        6cMfa/vWENdoBDMAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="labelControl1.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 21.75pt, style=Bold</value>
   </data>
