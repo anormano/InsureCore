@@ -986,6 +986,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControl1.ContentImage")));
             this.panelControl1.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.panelControl1.Controls.Add(this.labelControl1);
