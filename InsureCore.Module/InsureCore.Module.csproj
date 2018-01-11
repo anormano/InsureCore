@@ -193,13 +193,17 @@
     <Compile Include="BusinessObjects\HRM\Agent.cs" />
     <Compile Include="BusinessObjects\HRM\Employee.cs" />
     <Compile Include="BusinessObjects\HRM\Position.cs" />
+    <Compile Include="BusinessObjects\Life\Acquisition\ApplicationAttachment.cs" />
     <Compile Include="BusinessObjects\Life\Acquisition\Beneficiary.cs" />
     <Compile Include="BusinessObjects\Life\Acquisition\InsuranceApplication.cs" />
+    <Compile Include="BusinessObjects\Life\Actuary\BaseProduct.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\InvestmentAllocation.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\InvestmentType.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\LifeInsuranceBenefit.cs" />
+    <Compile Include="BusinessObjects\Life\Actuary\Occupation.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\Product.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\ProductBenefit.cs" />
+    <Compile Include="BusinessObjects\Life\Actuary\RiderProduct.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\SumInsuredSpecification.cs" />
     <Compile Include="BusinessObjects\Life\Claim\LifeClaimSumbission.cs" />
     <Compile Include="BusinessObjects\Life\Insured\Policy.cs" />

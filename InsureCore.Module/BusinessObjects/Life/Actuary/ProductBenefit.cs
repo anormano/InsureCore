@@ -16,7 +16,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
 {
     [DefaultClassOptions]
     [NavigationItem(false, GroupName = "Actuary")]
-    //[ImageName("BO_Contact")]
+    [ImageName("BO_Opportunity")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]

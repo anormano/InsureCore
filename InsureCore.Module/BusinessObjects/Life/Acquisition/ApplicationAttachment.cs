@@ -11,21 +11,22 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-using DevExpress.ExpressApp.Editors;
 using static InsureCore.Module.BusinessObjects.BaseObjects.EnumLibrary;
 
-namespace InsureCore.Module.BusinessObjects.Life.Actuary
+namespace InsureCore.Module.BusinessObjects.Life.Acquisition
 {
     [DefaultClassOptions]
-    [NavigationItem("Actuary")]
-    //[ImageName("BO_Contact")]
+    [FileAttachment("BO_FileAttachment")]
+    [ImageName("BO_Contact")]
+    [NavigationItem(false, GroupName = "Workspace")]
+    [CreatableItem(false)]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Product : BaseObject
+    public class ApplicationAttachment : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public Product(Session session)
+        public ApplicationAttachment(Session session)
             : base(session)
         {
         }
@@ -48,45 +49,11 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
         //    this.PersistentProperty = "Paid";
         //}
-        [RuleRequiredField]
-        public string Name { get; set; }
-        [RuleValueComparison(ValueComparisonType.GreaterThan, 0)]
-        public int PaymentPeriod { get; set; }
-        public PaymentPeriodType PeriodType { get; set; }
-        public PaymentTerm PaymentTerm { get; set; }
-        public bool IsActive { get; set; }
 
-
-        [EditorAlias(EditorAliases.HtmlPropertyEditor)]
-        [Size(SizeAttribute.Unlimited)]
-        public string Description { get; set; }
-
-
-        [Association("Product-SumInsuredSpecifications"), DevExpress.Xpo.Aggregated]
-        public XPCollection<SumInsuredSpecification> SumInsuredSpecifications
-        {
-            get
-            {
-                return GetCollection<SumInsuredSpecification>("SumInsuredSpecifications");
-            }
-        }
-
-        [Association("Product-Benefits")]
-        public XPCollection<ProductBenefit> Benefits
-        {
-            get
-            {
-                return GetCollection<ProductBenefit>("Benefits");
-            }
-        }
-
-        [Association("Product-InvestmentAllocations"), DevExpress.Xpo.Aggregated]
-        public XPCollection<InvestmentAllocation> InvestmentAllocations
-        {
-            get
-            {
-                return GetCollection<InvestmentAllocation>("InvestmentAllocations");
-            }
-        }
+        [Association("Application-Attachments")]
+        public InsuranceApplication Application { get; set; }
+        public FileData Attachment { get; set; }
+        public RequestFormAttachmentType DocumentType { get; set; }
+        public string Note { get; set; }
     }
 }

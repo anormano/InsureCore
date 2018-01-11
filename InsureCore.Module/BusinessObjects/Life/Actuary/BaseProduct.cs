@@ -17,15 +17,14 @@ using static InsureCore.Module.BusinessObjects.BaseObjects.EnumLibrary;
 namespace InsureCore.Module.BusinessObjects.Life.Actuary
 {
     [DefaultClassOptions]
-    [NavigationItem("Actuary")]
-    //[ImageName("BO_Contact")]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
+    [ImageName("BO_Product")]
+    [DefaultProperty("Name")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Product : BaseObject
+    public class BaseProduct : XPLiteObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public Product(Session session)
+        public BaseProduct(Session session)
             : base(session)
         {
         }
@@ -46,47 +45,20 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         //[Action(Caption = "My UI Action", ConfirmationMessage = "Are you sure?", ImageName = "Attention", AutoCommit = true)]
         //public void ActionMethod() {
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
-        //    this.PersistentProperty = "Paid";
+        //    this.PersistentProperty = "Paidpublic bool IsActive { get; set; }";
         //}
         [RuleRequiredField]
+        [RuleUniqueValue]
+        [Key]
+        public string Code { get; set; }
+        [RuleRequiredField]
         public string Name { get; set; }
-        [RuleValueComparison(ValueComparisonType.GreaterThan, 0)]
-        public int PaymentPeriod { get; set; }
-        public PaymentPeriodType PeriodType { get; set; }
-        public PaymentTerm PaymentTerm { get; set; }
         public bool IsActive { get; set; }
-
-
-        [EditorAlias(EditorAliases.HtmlPropertyEditor)]
+        public int InsurancePeriod { get; set; }
+        public decimal DefaultSumInsured { get; set; }
+        public CoverageTerm Term { get; set; }
         [Size(SizeAttribute.Unlimited)]
+        [EditorAlias(EditorAliases.HtmlPropertyEditor)]
         public string Description { get; set; }
-
-
-        [Association("Product-SumInsuredSpecifications"), DevExpress.Xpo.Aggregated]
-        public XPCollection<SumInsuredSpecification> SumInsuredSpecifications
-        {
-            get
-            {
-                return GetCollection<SumInsuredSpecification>("SumInsuredSpecifications");
-            }
-        }
-
-        [Association("Product-Benefits")]
-        public XPCollection<ProductBenefit> Benefits
-        {
-            get
-            {
-                return GetCollection<ProductBenefit>("Benefits");
-            }
-        }
-
-        [Association("Product-InvestmentAllocations"), DevExpress.Xpo.Aggregated]
-        public XPCollection<InvestmentAllocation> InvestmentAllocations
-        {
-            get
-            {
-                return GetCollection<InvestmentAllocation>("InvestmentAllocations");
-            }
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="InsureCore" Copyright="Copyright © 2018 Aturable Solution, All Rights Reserved" Company="Aturable.com">
-  <Options>
+  <Options LookupSmallCollectionItemCount="50">
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
   <SchemaModules>

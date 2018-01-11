@@ -4,7 +4,6 @@ using System.Text;
 using DevExpress.Xpo;
 using DevExpress.ExpressApp;
 using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
 using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
 using System.Collections.Generic;
@@ -33,12 +32,8 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
     [ImageName("BO_Contract")]
     [RuleCriteria("ExplanationRequired", DefaultContexts.Save, @"(IsHospitalized OR IsDiabetic OR IsCancer OR IsHepatitic OR IsKidneyDefect OR IsBoneDefect OR IsHormonalDefect OR IsAsthma OR IsAids OR IsCongenital OR Other Or IsBloodDefect) AND IsNullOrEmpty(Explanation)", SkipNullOrEmptyValues = false, InvertResult = true)]
     [RuleCriteria("OtherPreExistingRequired", DefaultContexts.Save, @"Other AND IsNullOrEmpty(OtherEntry)", SkipNullOrEmptyValues = false, InvertResult = true)]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
-    //[Persistent("DatabaseTableName")]
-    // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
     public class InsuranceApplication : BaseObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    {
         public InsuranceApplication(Session session)
             : base(session)
         {
@@ -46,22 +41,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
-        //private string _PersistentProperty;
-        //[XafDisplayName("My display name"), ToolTip("My hint message")]
-        //[ModelDefault("EditMask", "(000)-00"), Index(0), VisibleInListView(false)]
-        //[Persistent("DatabaseColumnName"), RuleRequiredField(DefaultContexts.Save)]
-        //public string PersistentProperty {
-        //    get { return _PersistentProperty; }
-        //    set { SetPropertyValue("PersistentProperty", ref _PersistentProperty, value); }
-        //}
-
-        //[Action(Caption = "My UI Action", ConfirmationMessage = "Are you sure?", ImageName = "Attention", AutoCommit = true)]
-        //public void ActionMethod() {
-        //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
-        //    this.PersistentProperty = "Paid";
-        //}
 
         public string FormNumber { get; set; }
         [ImmediatePostData(true)]
@@ -77,10 +57,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         InsurancePolicy policy = null;
         public InsurancePolicy Policy
         {
-            get
-            {
-                return policy;
-            }
+            get { return policy; }
             set
             {
                 if (policy == value)
@@ -428,8 +405,8 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         [Size(SizeAttribute.Unlimited)]
         [ModelDefault("RowCount", "2")]
         [EditorAlias(EditorAliases.StringPropertyEditor)]
-        
-        
+
+
         public string Explanation { get; set; }
         #endregion
 
@@ -441,6 +418,15 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
             get
             {
                 return GetCollection<Beneficiary>("Beneficiaries");
+            }
+        }
+
+        [Association("Application-Attachments"), Aggregated]
+        public XPCollection<ApplicationAttachment> Attachments
+        {
+            get
+            {
+                return GetCollection<ApplicationAttachment>("Attachments");
             }
         }
     }

@@ -17,6 +17,8 @@ using static InsureCore.Module.BusinessObjects.BaseObjects.EnumLibrary;
 namespace InsureCore.Module.BusinessObjects.Life.Insured
 {
     [DefaultClassOptions]
+    [CreatableItem(false)]
+    [NavigationItem("Workspace")]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]

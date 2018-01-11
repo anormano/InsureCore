@@ -135,5 +135,13 @@ namespace InsureCore.Module.BusinessObjects.BaseObjects
             Canceled,
             Completed
         }
+
+        public enum CoverageTerm
+        {
+            Single,
+            Yearly,
+            Monthly,
+            Daily
+        }
     }
 }
