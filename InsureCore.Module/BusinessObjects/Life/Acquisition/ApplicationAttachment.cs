@@ -51,7 +51,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         //}
 
         [Association("Application-Attachments")]
-        public InsuranceApplication Application { get; set; }
+        public SimpleInsuranceApplication Application { get; set; }
         public FileData Attachment { get; set; }
         public RequestFormAttachmentType DocumentType { get; set; }
         public string Note { get; set; }

@@ -56,8 +56,8 @@ namespace InsureCore.Module.BusinessObjects.Life.Insured
         public string VirtualAccount { get; set; }
         public PolicyStatus Status { get; set; }
 
-        InsuranceApplication insuranceApplication = null;
-        public InsuranceApplication InsuranceApplication
+        SimpleInsuranceApplication insuranceApplication = null;
+        public SimpleInsuranceApplication InsuranceApplication
         {
             get
             {
@@ -67,7 +67,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Insured
             {
                 if (insuranceApplication == value)
                     return;
-                InsuranceApplication prevInsuranceApplication = insuranceApplication;
+                SimpleInsuranceApplication prevInsuranceApplication = insuranceApplication;
                 insuranceApplication = value;
                 if (IsLoading) return;
                 if (prevInsuranceApplication != null && prevInsuranceApplication.Policy == this)

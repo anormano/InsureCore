@@ -49,7 +49,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         //}
         [Association("Product-InvestmentAllocations")]
         [VisibleInLookupListView(false)]
-        public Product Product { get; set; }
+        public SimpleProduct Product { get; set; }
         [RuleRequiredField]
         public InvestmentType InvestmentType { get; set; }
     }

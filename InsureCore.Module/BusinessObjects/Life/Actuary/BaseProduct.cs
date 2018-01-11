@@ -19,6 +19,8 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
     [DefaultClassOptions]
     [ImageName("BO_Product")]
     [DefaultProperty("Name")]
+    [CreatableItem(false)]
+    [NavigationItem(false, GroupName = "Actuary")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
@@ -56,6 +58,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         public bool IsActive { get; set; }
         public int InsurancePeriod { get; set; }
         public decimal DefaultSumInsured { get; set; }
+        public int DefaultPaymentPlan { get; set; }
         public CoverageTerm Term { get; set; }
         [Size(SizeAttribute.Unlimited)]
         [EditorAlias(EditorAliases.HtmlPropertyEditor)]

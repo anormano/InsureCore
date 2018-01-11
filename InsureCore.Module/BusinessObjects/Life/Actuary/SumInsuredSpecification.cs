@@ -49,7 +49,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         //}
         public string Name { get; set; }
         [Association("Product-SumInsuredSpecifications")]
-        public Product Product { get; set; }
+        public SimpleProduct Product { get; set; }
         [VisibleInLookupListView(true)]
         public decimal SumInsured { get; set; }
         [VisibleInLookupListView(true)]

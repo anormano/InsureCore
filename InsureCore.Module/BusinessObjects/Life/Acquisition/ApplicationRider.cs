@@ -11,20 +11,20 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using InsureCore.Module.BusinessObjects.Life.Actuary;
 
-namespace InsureCore.Module.BusinessObjects.Life.Actuary
+namespace InsureCore.Module.BusinessObjects.Life.Acquisition
 {
     [DefaultClassOptions]
-    [NavigationItem(true, GroupName = "Actuary")]
-    [CreatableItem(false)]
+    [NavigationItem(false, GroupName = "Workspace")]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, true, NewItemRowPosition.Top)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class RiderProduct : BaseProduct
+    public class ApplicationRider : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public RiderProduct(Session session)
+        public ApplicationRider(Session session)
             : base(session)
         {
         }
@@ -47,14 +47,9 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
         //    this.PersistentProperty = "Paid";
         //}
-
-        [Association("MainCoverages-AdditionalCoverages")]
-        public XPCollection<Product> MainProducts
-        {
-            get
-            {
-                return GetCollection<Product>("MainProducts");
-            }
-        }
+        [Association("InsuranceApplication-Riders")]
+        public InsuranceApplication Application { get; set; }
+        public RiderProduct Product { get; set; }
+        public decimal SumInsured { get; set; }
     }
 }

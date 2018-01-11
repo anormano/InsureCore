@@ -47,7 +47,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         //    this.PersistentProperty = "Paid";
         //}
         [Association("Product-Benefits")]
-        public Product Product { get; set; }
+        public SimpleProduct Product { get; set; }
         public LifeInsuranceBenefit Benefit { get; set; }
         public decimal SumInsured { get; set; }
     }

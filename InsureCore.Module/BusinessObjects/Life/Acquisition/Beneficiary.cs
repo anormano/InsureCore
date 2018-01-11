@@ -49,7 +49,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         //    this.PersistentProperty = "Paid";
         //}
         [Association("InsuranceApplication-Beneficiaries")]
-        public InsuranceApplication InsuranceApplication { get; set; }
+        public SimpleInsuranceApplication InsuranceApplication { get; set; }
         [RuleRequiredField]
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
