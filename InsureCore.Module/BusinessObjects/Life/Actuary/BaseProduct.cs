@@ -56,6 +56,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         [RuleRequiredField]
         public string Name { get; set; }
         public bool IsActive { get; set; }
+        [RuleRange(1,100)]
         public int InsurancePeriod { get; set; }
         public decimal DefaultSumInsured { get; set; }
         public int DefaultPaymentPlan { get; set; }
