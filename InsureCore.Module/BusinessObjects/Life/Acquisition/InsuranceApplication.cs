@@ -14,12 +14,13 @@ using InsureCore.Module.BusinessObjects.HRM;
 using static InsureCore.Module.BusinessObjects.BaseObjects.EnumLibrary;
 using InsureCore.Module.BusinessObjects.General;
 using InsureCore.Module.BusinessObjects.Life.Actuary;
+using DevExpress.ExpressApp.ConditionalAppearance;
 
 namespace InsureCore.Module.BusinessObjects.Life.Acquisition
 {
     [DefaultClassOptions]
     [NavigationItem(true, GroupName = "Workspace")]
-    
+    [Appearance("DisableProduct", Criteria = "BirthDay = null", TargetItems = "Product", Enabled = false)]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
@@ -84,36 +85,39 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
             }
             set
             {
-                if (product == value)
-                    return;
-                if (IsLoading)
-                    return;
-                Product prevProduct = product;
-                SetPropertyValue("Product", ref product, value);
-                if (Riders.Count > 0)
+                if (SetPropertyValue("Product", ref product, value))
                 {
-                    while(Riders.Count > 0)
+                    if (IsLoading)
+                        return;
+                    while (Riders.Count > 0)
                     {
                         ApplicationRider removeRider = Riders[0];
                         Riders.Remove(removeRider);
                     }
-                }
 
-                if (product.RiderProducts.Count > 0)
-                {
-                    foreach(RiderProduct rider in product.RiderProducts)
+                    if (Product == null)
+                        return;
+
+                    ApplicationRider applicationRider = new ApplicationRider(this.Session);
+                    applicationRider.Product = (BaseProduct)Session.GetObjectByKey<Product>(Product.Code);
+                    applicationRider.SumInsured = Product.DefaultSumInsured;
+                    Riders.Add(applicationRider);
+
+                    if (product.RiderProducts.Count > 0)
                     {
-                        ApplicationRider applicationRider = new ApplicationRider(this.Session);
-                        applicationRider.Product = Session.GetObjectByKey<RiderProduct>(rider.Code);
-                        applicationRider.SumInsured = rider.DefaultSumInsured;
+                        foreach (RiderProduct rider in product.RiderProducts)
+                        {
+                            applicationRider = new ApplicationRider(this.Session);
+                            applicationRider.Product = (BaseProduct)Session.GetObjectByKey<RiderProduct>(rider.Code);
+                            applicationRider.SumInsured = rider.DefaultSumInsured;
 
-                        Riders.Add(applicationRider);
+                            Riders.Add(applicationRider);
+                        }
                     }
                 }
-                OnChanged("Product");
+                OnChanged("Riders");
             }
         }
-
 
         public DateTime CreateDate { get; set; }
         public Agent Agent { get; set; }

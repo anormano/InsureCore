@@ -199,6 +199,8 @@
     <Compile Include="BusinessObjects\Life\Acquisition\Beneficiary.cs" />
     <Compile Include="BusinessObjects\Life\Acquisition\InsuranceApplication.cs" />
     <Compile Include="BusinessObjects\Life\Acquisition\SimpleInsuranceApplication.cs" />
+    <Compile Include="BusinessObjects\Life\Actuary\PremiumRate.cs" />
+    <Compile Include="BusinessObjects\Life\Actuary\PremiumRateDetail.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\RiderProduct.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\BaseProduct.cs" />
     <Compile Include="BusinessObjects\Life\Actuary\Product.cs" />

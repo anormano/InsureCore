@@ -15,8 +15,9 @@ using DevExpress.Persistent.Validation;
 namespace InsureCore.Module.BusinessObjects.General
 {
     [DefaultClassOptions]
+    [NavigationItem("Administration")]
     //[ImageName("BO_Contact")]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
+    [DefaultProperty("Code")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
@@ -37,5 +38,6 @@ namespace InsureCore.Module.BusinessObjects.General
         public string Code { get; set; }
         [RuleRequiredField]
         public string Name { get; set; }
+        public string Symbol { get; set; }
     }
 }

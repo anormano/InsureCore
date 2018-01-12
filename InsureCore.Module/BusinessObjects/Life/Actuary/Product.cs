@@ -17,6 +17,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
     [DefaultClassOptions]
     [NavigationItem(true, GroupName = "Actuary")]
     [CreatableItem(false)]
+    [Custom("Clonable", "true")]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
