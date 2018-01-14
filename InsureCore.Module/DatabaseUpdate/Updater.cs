@@ -27,11 +27,11 @@ namespace InsureCore.Module.DatabaseUpdate {
             //    theObject = ObjectSpace.CreateObject<DomainObject1>();
             //    theObject.Name = name;
             //}
-            BusinessObjects.Administration.User sampleUser = ObjectSpace.FindObject<BusinessObjects.Administration.User>(new BinaryOperator("UserName", "InsureCoreUser"));
+            BusinessObjects.Administration.User sampleUser = ObjectSpace.FindObject<BusinessObjects.Administration.User>(new BinaryOperator("UserName", "User"));
             if (sampleUser == null)
             {
                 sampleUser = ObjectSpace.CreateObject<BusinessObjects.Administration.User>();
-                sampleUser.UserName = "InsureCoreUser";
+                sampleUser.UserName = "User";
                 sampleUser.SetPassword("");
             }
             BusinessObjects.Administration.Role defaultRole = CreateDefaultRole();
@@ -77,11 +77,11 @@ namespace InsureCore.Module.DatabaseUpdate {
                 defaultRole = ObjectSpace.CreateObject<BusinessObjects.Administration.Role>();
                 defaultRole.Name = "Default";
 
-                defaultRole.AddObjectPermission<PermissionPolicyUser>(SecurityOperations.Read, "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
-                defaultRole.AddNavigationPermission(@"Application/NavigationItems/Items/Default/Items/MyDetails", SecurityPermissionState.Allow);
-                defaultRole.AddMemberPermission<PermissionPolicyUser>(SecurityOperations.Write, "ChangePasswordOnFirstLogon", "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
-                defaultRole.AddMemberPermission<PermissionPolicyUser>(SecurityOperations.Write, "StoredPassword", "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
-                defaultRole.AddTypePermissionsRecursively<PermissionPolicyRole>(SecurityOperations.Read, SecurityPermissionState.Deny);
+                defaultRole.AddObjectPermission<InsureCore.Module.BusinessObjects.Administration.User>(SecurityOperations.Read, "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
+                defaultRole.AddNavigationPermission(@"Application/NavigationItems/Items/Administration/Items/MyDetails", SecurityPermissionState.Allow);
+                defaultRole.AddMemberPermission<InsureCore.Module.BusinessObjects.Administration.User>(SecurityOperations.Write, "ChangePasswordOnFirstLogon", "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
+                defaultRole.AddMemberPermission<InsureCore.Module.BusinessObjects.Administration.User>(SecurityOperations.Write, "StoredPassword", "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
+                defaultRole.AddTypePermissionsRecursively<InsureCore.Module.BusinessObjects.Administration.Role>(SecurityOperations.Read, SecurityPermissionState.Deny);
                 defaultRole.AddTypePermissionsRecursively<ModelDifference>(SecurityOperations.ReadWriteAccess, SecurityPermissionState.Allow);
                 defaultRole.AddTypePermissionsRecursively<ModelDifferenceAspect>(SecurityOperations.ReadWriteAccess, SecurityPermissionState.Allow);
                 defaultRole.AddTypePermissionsRecursively<ModelDifference>(SecurityOperations.Create, SecurityPermissionState.Allow);

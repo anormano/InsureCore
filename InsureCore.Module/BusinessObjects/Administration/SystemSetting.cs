@@ -56,6 +56,7 @@ namespace InsureCore.Module.BusinessObjects.Administration
         public string CompanyName { get; set; }
         [ImageEditor(ImageSizeMode = ImageSizeMode.Zoom, DetailViewImageEditorMode = ImageEditorMode.PictureEdit, DetailViewImageEditorFixedHeight = 200, DetailViewImageEditorFixedWidth = 300)]
         public MediaDataObject Logo { get; set; }
+        public string TagLine { get; set; }
 
         public Branch HeadOffice { get; set; }
     }

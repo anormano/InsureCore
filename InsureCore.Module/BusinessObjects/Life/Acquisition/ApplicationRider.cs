@@ -113,5 +113,24 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
                 return premium;
             }
         }
+
+        public DateTime CoverageEnd
+        {
+            get
+            {
+                DateTime coverageEnd = DateTime.MinValue;
+                if (IsLoading)
+                    return coverageEnd;
+
+                if (Application != null && Product != null)
+                {
+                    int? coverageYear = Product.CoverageAgeLimit - Application.NextYearAge;
+                    coverageEnd = Application.CreateDate.AddYears((int)coverageYear);
+                    return coverageEnd;
+                }
+                else
+                    return coverageEnd;
+            }
+        }
     }
 }

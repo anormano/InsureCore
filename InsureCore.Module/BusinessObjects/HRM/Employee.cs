@@ -11,19 +11,18 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
-using InsureCore.Module.BusinessObjects.Administration;
-using InsureCore.Module.BusinessObjects.General;
 
 namespace InsureCore.Module.BusinessObjects.HRM
 {
     [DefaultClassOptions]
-    [NavigationItem("HRM")]
+    [NavigationItem(true, GroupName = "HRM")]
+    [CreatableItem(false)]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Employee : Administration.User
+    public class Employee : BaseEmployee
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
         public Employee(Session session)
             : base(session)
@@ -48,23 +47,5 @@ namespace InsureCore.Module.BusinessObjects.HRM
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
         //    this.PersistentProperty = "Paid";
         //}
-        [Association("Branch-Employees")]
-        public Branch Branch { get; set; }
-
-        public Position Position { get; set; }
-        public DateTime JoinDate { get; set; }
-        public DateTime LeaveDate { get; set; }
-
-        [Association("Employee-SubOrdinates")]
-        public Employee Manager { get; set; }
-
-        [Association("Employee-SubOrdinates")]
-        public XPCollection<Employee> SubOrdinates
-        {
-            get
-            {
-                return GetCollection<Employee>("SubOrdinates");
-            }
-        }
     }
 }

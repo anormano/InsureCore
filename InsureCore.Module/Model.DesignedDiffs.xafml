@@ -1,5 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="InsureCore" Copyright="Copyright © 2018 Aturable Solution, All Rights Reserved" Company="Aturable.com">
+  <NavigationItems>
+    <Items>
+      <Item Id="Workspace" Index="0" />
+      <Item Id="Actuary" Index="1" />
+      <Item Id="Claim" Index="2" />
+      <Item Id="HRM" Index="3" />
+      <Item Id="Reports" Index="4" />
+      <Item Id="KPI" Index="5" />
+      <Item Id="State Machine" Index="6" />
+      <Item Id="Administration">
+        <Items>
+          <Item Id="User_ListView" Index="0" />
+          <Item Id="Role_ListView" Index="1" />
+          <Item Id="Area" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="Country_ListView" ViewId="Country_ListView" ObjectKey="" Index="0" IsNewNode="True" />
+              <Item Id="Province_ListView" ViewId="Province_ListView" ObjectKey="" Index="1" IsNewNode="True" />
+              <Item Id="District_ListView" ViewId="District_ListView" ObjectKey="" Index="2" IsNewNode="True" />
+              <Item Id="SubDistrict_ListView" ViewId="SubDistrict_ListView" ObjectKey="" Index="3" IsNewNode="True" />
+              <Item Id="Village_ListView" ViewId="Village_ListView" ObjectKey="" Index="4" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Country_ListView" Removed="True" />
+          <Item Id="District_ListView" Removed="True" />
+          <Item Id="Province_ListView" Removed="True" />
+          <Item Id="SubDistrict_ListView" Removed="True" />
+          <Item Id="SystemSetting_ListView" ViewId="SystemSetting_DetailView" />
+          <Item Id="Village_ListView" Removed="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options LookupSmallCollectionItemCount="50">
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>

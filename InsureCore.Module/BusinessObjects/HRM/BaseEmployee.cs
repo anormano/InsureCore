@@ -9,22 +9,24 @@ using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
 using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using InsureCore.Module.BusinessObjects.Administration;
+using InsureCore.Module.BusinessObjects.General;
 
 namespace InsureCore.Module.BusinessObjects.HRM
 {
     [DefaultClassOptions]
-    [NavigationItem(true, GroupName = "HRM")]
+    [NavigationItem(false, GroupName = "HRM")]
     [CreatableItem(false)]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Agent : BaseEmployee
+    public class BaseEmployee : Administration.User
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public Agent(Session session)
+        public BaseEmployee(Session session)
             : base(session)
         {
         }
@@ -47,5 +49,24 @@ namespace InsureCore.Module.BusinessObjects.HRM
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
         //    this.PersistentProperty = "Paid";
         //}
+        public string IdentificationNmber { get; set; }
+        [Association("Branch-Employees")]
+        public Branch Branch { get; set; }
+
+        public Position Position { get; set; }
+        public DateTime JoinDate { get; set; }
+        public DateTime LeaveDate { get; set; }
+
+        [Association("Employee-SubOrdinates")]
+        public BaseEmployee Manager { get; set; }
+
+        [Association("Employee-SubOrdinates")]
+        public XPCollection<BaseEmployee> SubOrdinates
+        {
+            get
+            {
+                return GetCollection<BaseEmployee>("SubOrdinates");
+            }
+        }
     }
 }

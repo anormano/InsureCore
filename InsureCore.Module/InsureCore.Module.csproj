@@ -192,6 +192,7 @@
     <Compile Include="BusinessObjects\General\Branch.cs" />
     <Compile Include="BusinessObjects\General\Currency.cs" />
     <Compile Include="BusinessObjects\HRM\Agent.cs" />
+    <Compile Include="BusinessObjects\HRM\BaseEmployee.cs" />
     <Compile Include="BusinessObjects\HRM\Employee.cs" />
     <Compile Include="BusinessObjects\HRM\Position.cs" />
     <Compile Include="BusinessObjects\Life\Acquisition\ApplicationAttachment.cs" />

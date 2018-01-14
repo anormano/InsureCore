@@ -51,7 +51,7 @@ namespace InsureCore.Module.BusinessObjects.General
         [RuleRequiredField]
         public string Name { get; set; }
 
-        public Employee Manager { get; set; }
+        public BaseEmployee Manager { get; set; }
 
         [ImmediatePostData]
         public Area.Country Country { get; set; }
@@ -71,11 +71,11 @@ namespace InsureCore.Module.BusinessObjects.General
         public string Fax { get; set; }
 
         [Association("Branch-Employees")]
-        public XPCollection<Employee> Employees
+        public XPCollection<BaseEmployee> Employees
         {
             get
             {
-                return GetCollection<Employee>("Employees");
+                return GetCollection<BaseEmployee>("Employees");
             }
         }
     }

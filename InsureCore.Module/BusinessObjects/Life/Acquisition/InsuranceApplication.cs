@@ -20,7 +20,9 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
 {
     [DefaultClassOptions]
     [NavigationItem(true, GroupName = "Workspace")]
-    [Appearance("DisableProduct", Criteria = "BirthDay = null", TargetItems = "Product", Enabled = false)]
+    [Appearance("DisableProduct", Criteria = "BirthDay < #01/01/1900# AND Gender = 'Undefined'", TargetItems = "Product", Enabled = false)]
+    [Appearance("DisableDateGender", Criteria = "Product <> null", TargetItems = "Gender,BirthDay", Enabled = false)]
+    [Appearance("DisableAuditFields", TargetItems = "Agent,CreateDate", Enabled = false)]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
@@ -37,6 +39,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
             CreateDate = DateTime.Now;
+            Agent = Session.GetObjectByKey<Agent>(SecuritySystem.CurrentUserId);
         }
         //private string _PersistentProperty;
         //[XafDisplayName("My display name"), ToolTip("My hint message")]
@@ -52,13 +55,32 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         //    // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
         //    this.PersistentProperty = "Paid";
         //}
+        public string ApplicationNumber { get; set; }
         [RuleRequiredField]
         public string FullName { get; set; }
         [RuleRequiredField]
         [ImmediatePostData]
         public DateTime BirthDay { get; set; }
+        [ImmediatePostData]
         public Gender Gender { get; set; }
-        public bool IsSmoker { get; set; }
+        bool isSmoker;
+        [ImmediatePostData]
+        public bool IsSmoker
+        {
+            get
+            {
+                return isSmoker;
+            }
+            set
+            {
+                if (SetPropertyValue("IsSmoker", ref isSmoker, value))
+                {
+                    OnChanged("Riders");
+                }
+            }
+        }
+
+        public Occupation Occupation { get; set; }
         public Currency Currency { get; set; }
         public PaymentTerm PaymentTerm { get; set; }
         public int PaymentPlan { get; set; }
@@ -97,7 +119,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
 
                     if (Product == null)
                         return;
-
+                    PaymentPlan = Product.DefaultPaymentPlan;
                     ApplicationRider applicationRider = new ApplicationRider(this.Session);
                     applicationRider.Product = (BaseProduct)Session.GetObjectByKey<Product>(Product.Code);
                     applicationRider.SumInsured = Product.DefaultSumInsured;
@@ -118,10 +140,22 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
                 OnChanged("Riders");
             }
         }
+        [PersistentAlias("Riders.Sum(Premium)")]
+        public decimal TotalPremium
+        {
+            get
+            {
+                if (Riders.Count > 0)
+                    return (decimal)EvaluateAlias("TotalPremium");
+                else
+                    return 0;
+            }
+        }
 
         public DateTime CreateDate { get; set; }
         public Agent Agent { get; set; }
 
+        [ModelDefault("Caption", "Products/Riders")]
         [Association("InsuranceApplication-Riders"), Aggregated]
         public XPCollection<ApplicationRider> Riders
         {
