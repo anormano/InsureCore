@@ -39,7 +39,8 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
             CreateDate = DateTime.Now;
-            Agent = Session.GetObjectByKey<Agent>(SecuritySystem.CurrentUserId);
+            
+            Agent = Session.GetObjectByKey<InsureCore.Module.BusinessObjects.Administration.User>(SecuritySystem.CurrentUserId);
         }
         //private string _PersistentProperty;
         //[XafDisplayName("My display name"), ToolTip("My hint message")]
@@ -65,6 +66,7 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
         public Gender Gender { get; set; }
         bool isSmoker;
         [ImmediatePostData]
+        [VisibleInListView(false)]
         public bool IsSmoker
         {
             get
@@ -79,11 +81,15 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
                 }
             }
         }
-
+        [VisibleInListView(false)]
         public Occupation Occupation { get; set; }
+        [VisibleInListView(false)]
         public Currency Currency { get; set; }
+        [VisibleInListView(false)]
         public PaymentTerm PaymentTerm { get; set; }
+        [VisibleInListView(false)]
         public int PaymentPlan { get; set; }
+        [VisibleInListView(false)]
         public int NextYearAge
         {
             get
@@ -151,9 +157,11 @@ namespace InsureCore.Module.BusinessObjects.Life.Acquisition
                     return 0;
             }
         }
-
+        [VisibleInListView(false)]
+        [ModelDefault("DisplayFormat", "{0:dd-MMM-yy hh:mm}")]
         public DateTime CreateDate { get; set; }
-        public Agent Agent { get; set; }
+        [VisibleInListView(false)]
+        public InsureCore.Module.BusinessObjects.Administration.User Agent { get; set; }
 
         [ModelDefault("Caption", "Products/Riders")]
         [Association("InsuranceApplication-Riders"), Aggregated]

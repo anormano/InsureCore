@@ -59,6 +59,8 @@ namespace InsureCore.Module.BusinessObjects.Life.Actuary
         public PremiumRate Rate { get; set; }
         [RuleRange(1, 100)]
         public int InsurancePeriod { get; set; }
+        public int MaximumAge { get; set; }
+        public int MedicalRequirementAge { get; set; }
         public decimal DefaultSumInsured { get; set; }
         public int DefaultPaymentPlan { get; set; }
         public int? CoverageAgeLimit { get; set; }

@@ -40,4 +40,53 @@
     <SchemaModule Name="SchedulerModuleBase" Version="17.2.4.0" IsNewNode="True" />
     <SchemaModule Name="SystemModule" Version="17.2.4.0" IsNewNode="True" />
   </SchemaModules>
+  <Views>
+    <DetailView Id="InsuranceApplication_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="General Information" Index="0" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="Col1" IsNewNode="True">
+              <LayoutItem Id="ApplicationNumber" ViewItem="ApplicationNumber" ShowCaption="" Index="0" IsNewNode="True" />
+              <LayoutItem Id="CreateDate" ViewItem="CreateDate" ShowCaption="" Index="5" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Col2" IsNewNode="True">
+              <LayoutItem Id="Agent" ViewItem="Agent" ShowCaption="" Index="6" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Insured Information" Index="1" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
+            <LayoutGroup Id="Col1" IsNewNode="True">
+              <LayoutItem Id="FullName" ViewItem="FullName" ShowCaption="" Index="1" IsNewNode="True" />
+              <LayoutItem Id="BirthDay" ViewItem="BirthDay" ShowCaption="" Index="2" IsNewNode="True" />
+              <LayoutItem Id="NextYearAge" ViewItem="NextYearAge" ShowCaption="" Index="2" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Col2" IsNewNode="True">
+              <LayoutItem Id="Gender" ViewItem="Gender" ShowCaption="" Index="3" IsNewNode="True" />
+              <LayoutItem Id="IsSmoker" ViewItem="IsSmoker" ShowCaption="" Index="4" IsNewNode="True" />
+              <LayoutItem Id="Occupation" ViewItem="Occupation" ShowCaption="" Index="5" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" Index="2">
+            <LayoutGroup Id="InsuranceApplication">
+              <LayoutGroup Id="InsuranceApplication_col1">
+                <LayoutItem Id="Product" ViewItem="Product" ShowCaption="" Index="3" IsNewNode="True" />
+                <LayoutItem Id="ApplicationNumber" Removed="True" />
+                <LayoutItem Id="BirthDay" Removed="True" />
+                <LayoutItem Id="FullName" Removed="True" />
+                <LayoutItem Id="Gender" Removed="True" />
+                <LayoutItem Id="IsSmoker" Removed="True" />
+                <LayoutItem Id="Occupation" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="InsuranceApplication_col2">
+                <LayoutItem Id="Agent" Removed="True" />
+                <LayoutItem Id="CreateDate" Removed="True" />
+                <LayoutItem Id="NextYearAge" Removed="True" />
+                <LayoutItem Id="Product" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Riders_Group" Index="3" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
 </Application>
